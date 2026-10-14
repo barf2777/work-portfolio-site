@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AD hygiene and LAPS — Groundline</title>
+  <meta name="description" content="Stale computers, LAPS, and answerable local-admin paths." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="../index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#approach">Approach</a></li>
+      <li><a href="../index.html#stack">Stack</a></li>
+    </ul>
+  </nav>
+  <header class="case-hero" id="main">
+    <a class="back" href="../index.html#work">← All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1>AD hygiene and LAPS</h1>
+    <div class="case-meta"><span class="tag">Active Directory</span><span class="tag">LAPS</span><span class="tag">stale computer objects</span><span class="tag">privilege tracing</span></div>
+    <p class="case-scale"><span>Scale</span> single forest, 2 domain controllers · ~40 Group Policy Objects inherited across tiers · inherited non-English install locale complicating built-in group names</p>
+  </header>
+  <article class="case-body">
+<h2>Situation</h2>
+<p>Directory drift: stale computer accounts, unclear local-admin paths, need for randomized local admin passwords.</p>
+<h2>Task</h2>
+<p>Clean inactive computers, introduce LAPS thinking, and make “who has admin?” answerable.</p>
+<h2>Approach</h2>
+<ol>
+<li>Scripted/process cleanup of inactive computer objects with change control.</li>
+<li>Deploy or stage Windows LAPS with clear recovery story for helpdesk.</li>
+<li>Trace nested group rights instead of guessing from local Administrators screenshots.</li>
+<li>Prefer AD-group local admin over random local accounts.</li>
+</ol>
+<h2>Result</h2>
+<ul>
+<li>Smaller attack surface from stale objects; clearer privilege model.</li>
+<li>Helpdesk-ready local admin recovery pattern.</li>
+</ul>
+<aside class="soundbites"><h2>Interview soundbites</h2>
+<blockquote>“Stale computer objects are inventory debt with security interest.”</blockquote>
+<blockquote>“If you can’t explain who has admin, you don’t have least privilege.”</blockquote>
+</aside>
+  </article>
+  <footer class="site-footer">
+    <div><strong>Groundline</strong> · anonymized on-prem infrastructure work</div>
+    <div>Draft site · review before any public push</div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Incident hygiene (EDR + national CERT) — Groundline</title>
+  <meta name="description" content="EDR and CERT intake without mixing unrelated stories." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="../index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#approach">Approach</a></li>
+      <li><a href="../index.html#stack">Stack</a></li>
+    </ul>
+  </nav>
+  <header class="case-hero" id="main">
+    <a class="back" href="../index.html#work">← All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1>Incident hygiene (EDR + national CERT)</h1>
+    <div class="case-meta"><span class="tag">EDR</span><span class="tag">phishing</span><span class="tag">CERT intake</span><span class="tag">containment notes</span><span class="tag">separation of concerns</span></div>
+
+  </header>
+  <article class="case-body">
+<h2>Situation</h2>
+<p>On-prem campus with managed EDR. Occasional phishing and national CERT advisories arrive with sparse context. Floor politics and host renames make “which PC was that?” harder than the alert text suggests.</p>
+<h2>Task</h2>
+<p>Respond in a way that contains risk quickly, leaves an auditable trail, and does <strong>not</strong> mix unrelated detections into one story until correlation proves it.</p>
+<h2>Approach</h2>
+<ol>
+<li><strong>Contain first</strong> — EDR blocks, local cleanup, disable risky accounts/objects when indicated; escalate to managed SOC for persistence follow-up.</li>
+<li><strong>Write a short incident stub the same day</strong> — timeline, what was blocked, what remains open; keep IOCs out of any public material.</li>
+<li><strong>Separate threads</strong> — a CERT DNS/HTTP window, a blocked brute-force tool, and an unrelated high-ML executable on another host stay separate until hunt evidence joins them.</li>
+<li><strong>Inventory reality checks</strong> — missing AD computer objects / missing DHCP leases often mean stale hostnames, not “invisible attackers on a declared VLAN.”</li>
+<li><strong>Policy follow-ups</strong> — where Office→child process abuse is a theme, push ASR / GPO mitigations as a parallel track, not as theatre during the firefight.</li>
+</ol>
+<h2>Result</h2>
+<ul>
+<li>Contained phishing response with clear “pending SOC sign-off” status.</li>
+<li>Incident register and private notes that future-you can resume without Slack archaeology.</li>
+<li>Habit of not over-correlating screenshots into one narrative.</li>
+</ul>
+<aside class="soundbites"><h2>Interview soundbites</h2>
+<blockquote>“I document containment before I chase perfect attribution.”</blockquote>
+<blockquote>“Unrelated EDR screenshots stay on separate tickets until DNS/process evidence links them.”</blockquote>
+</aside>
+  </article>
+  <footer class="site-footer">
+    <div><strong>Groundline</strong> · anonymized on-prem infrastructure work</div>
+    <div>Draft site · review before any public push</div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

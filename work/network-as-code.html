@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Network as code (MikroTik fleet) — Groundline</title>
+  <meta name="description" content="Git-tracked RouterOS exports and inventory that matches live DHCP." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="../index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#approach">Approach</a></li>
+      <li><a href="../index.html#stack">Stack</a></li>
+    </ul>
+  </nav>
+  <header class="case-hero" id="main">
+    <a class="back" href="../index.html#work">← All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1>Network as code (MikroTik fleet)</h1>
+    <div class="case-meta"><span class="tag">RouterOS</span><span class="tag">Git</span><span class="tag">inventory</span><span class="tag">CAPsMAN</span><span class="tag">Ansible inventory coupling</span></div>
+    <p class="case-scale"><span>Scale</span> ~50 RouterOS devices (routers, switches, access points) · ~25 routed VLANs · single Ansible inventory shared with monitoring</p>
+  </header>
+  <article class="case-body">
+<h2>Situation</h2>
+<p>Dozens of MikroTik devices across a campus: core routers, site edges, Wi‑Fi APs. Config lived in tribal knowledge and one-off WinBox sessions. Identity↔IP mismatches made monitoring and backups unreliable.</p>
+<h2>Task</h2>
+<p>Make router configuration reviewable and recoverable: Git-tracked exports, a single inventory of mgmt IPs, and a clear split between <strong>controller</strong> Wi‑Fi changes and <strong>edge</strong> local changes.</p>
+<h2>Approach</h2>
+<ol>
+<li><strong>Nightly (or on-demand) text exports</strong> into Git — human-diffable <code>.rsc</code>, not only binary backups.</li>
+<li><strong>Reconcile inventory vs live DHCP</strong> — fix wrong identity↔IP rows; treat “waiting” leases as offline, not mystery hosts.</li>
+<li><strong>CAPsMAN literacy</strong> — real Wi‑Fi edits live on the controller; CAP files that only show managed-wlan drift are sync echo, not fifteen separate changes.</li>
+<li><strong>Cross-repo coupling</strong> — backup inventory and monitoring inventory share mgmt IPs; adding a router means explicit IP args, not auto-discover magic.</li>
+<li><strong>Commit message discipline</strong> — name the intentional device/controller change; never paste PSKs or communities into Git messages.</li>
+</ol>
+<h2>Result</h2>
+<ul>
+<li>Operators can answer “what changed on the core last week?” from Git history.</li>
+<li>Monitoring and backup targets stay aligned with the same mgmt addressing model.</li>
+<li>Wi‑Fi reviews focus on the controller, not noise on every AP export.</li>
+</ul>
+<aside class="soundbites"><h2>Interview soundbites</h2>
+<blockquote>“Git is the source of truth for <em>what we intended</em>; live DHCP is the source of truth for <em>what is online</em>.”</blockquote>
+<blockquote>“If fifteen APs changed and the controller didn’t, you are reading sync echo.”</blockquote>
+</aside>
+  </article>
+  <footer class="site-footer">
+    <div><strong>Groundline</strong> · anonymized on-prem infrastructure work</div>
+    <div>Draft site · review before any public push</div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Backup visibility and scrape pitfalls — Groundline</title>
+  <meta name="description" content="Make backup health scrapeable; catch firewalld holes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="../index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#approach">Approach</a></li>
+      <li><a href="../index.html#stack">Stack</a></li>
+    </ul>
+  </nav>
+  <header class="case-hero" id="main">
+    <a class="back" href="../index.html#work">← All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1>Backup visibility and scrape pitfalls</h1>
+    <div class="case-meta"><span class="tag">PBS</span><span class="tag">file backup</span><span class="tag">node_exporter</span><span class="tag">firewalld</span><span class="tag">cron</span><span class="tag">Ansible defaults</span></div>
+    <p class="case-scale"><span>Scale</span> multi-terabyte backup estate (hypervisor guests via Backup Server plus file-level clients) · two backup products with different failure modes · daily digest to chat</p>
+  </header>
+  <article class="case-body">
+<h2>Situation</h2>
+<p>Backups existed (hypervisor snapshots / PBS, file-level backup appliances) but operators lacked a single daily signal: is the pool healthy, is free space OK, did last night fail? Host agents “listening” locally still looked down from Prometheus.</p>
+<h2>Task</h2>
+<p>Expose backup hosts to the metrics stack, alert on failure and storage pressure, and leave a daily digest ops can skim in Slack.</p>
+<h2>Approach</h2>
+<ol>
+<li><strong>Exporter + node metrics</strong> on PBS and backup appliances via Ansible; keep Synology-class hosts on a digest path when native exporters are awkward.</li>
+<li><strong>Verify scrape from the collector</strong> — <code>curl</code> on localhost is not enough; host firewalld often allows app ports but not <code>:9100</code> from the monitoring subnet.</li>
+<li><strong>SSH key hygiene</strong> — OpenSSH <code>.pub</code> must be one line; RFC4716 multi-line pubs make <code>ssh-copy-id</code> write garbage into <code>authorized_keys</code>.</li>
+<li><strong>Cron env discipline</strong> — scripts that need webhook URLs must load the env file themselves (or use <code>export</code>); shell <code>. env</code> without export silently drops vars for child processes.</li>
+<li><strong>Standalone playbook defaults</strong> — roles used outside <code>site.yml</code> need <code>defaults/</code> so required vars are not “undefined.”</li>
+</ol>
+<h2>Result</h2>
+<ul>
+<li>Backup storage and failure signals land in Slack; Grafana covers host disk and exporter health.</li>
+<li>Troubleshooting notes capture the “active but unreachable” pattern for the next host.</li>
+<li>PBS datastore recovery documented when a pool was unimported / over-complicated with a file vdev.</li>
+</ul>
+<aside class="soundbites"><h2>Interview soundbites</h2>
+<blockquote>“Monitoring truth is measured from the scraper, not the agent host.”</blockquote>
+<blockquote>“Cron + secrets: load inside the process, don’t assume the shell exported them.”</blockquote>
+</aside>
+  </article>
+  <footer class="site-footer">
+    <div><strong>Groundline</strong> · anonymized on-prem infrastructure work</div>
+    <div>Draft site · review before any public push</div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

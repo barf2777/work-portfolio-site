@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fleet observability (Prometheus + Grafana) — Groundline</title>
+  <meta name="description" content="Prometheus + Grafana for the router fleet; alerts verified end-to-end." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="../index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#approach">Approach</a></li>
+      <li><a href="../index.html#stack">Stack</a></li>
+    </ul>
+  </nav>
+  <header class="case-hero" id="main">
+    <a class="back" href="../index.html#work">← All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1>Fleet observability (Prometheus + Grafana)</h1>
+    <div class="case-meta"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Alertmanager</span><span class="tag">MikroTik exporters</span><span class="tag">Slack</span><span class="tag">Ansible</span></div>
+    <p class="case-scale"><span>Scale</span> ~50 RouterOS devices scraped · hypervisor and backup hosts alongside · dashboards and Slack alerts deployed from one Ansible repo</p>
+  </header>
+  <article class="case-body">
+<h2>Situation</h2>
+<p>Campus already had a traditional NMS. Router and hypervisor visibility for the ops day-to-day was thin: CPU/WAN pain showed up as tickets, not graphs. Alerts were uneven (some Slack paths dead, some media types disabled).</p>
+<h2>Task</h2>
+<p>Stand up a Prometheus/Grafana stack for the MikroTik fleet and related hosts, with actionable Slack alerts and an idempotent Ansible deploy path.</p>
+<h2>Approach</h2>
+<ol>
+<li><strong>Stable scrape keys</strong> — router metrics keyed by mgmt IP so renaming RouterOS identity does not break history.</li>
+<li><strong>Explicit add-router workflow</strong> — pass IPs; do not pretend inventory auto-discovery is safe.</li>
+<li><strong>Alert path end-to-end</strong> — Alertmanager → Slack templates; verify with a controlled fire, not “config looks fine.”</li>
+<li><strong>Dashboards by role</strong> — fleet overview, DHCP churn approximations, WireGuard peer health where enabled.</li>
+<li><strong>Document cross-repo risks</strong> — monitoring playbooks assume sibling checkouts and vaulted secrets.</li>
+</ol>
+<h2>Result</h2>
+<ul>
+<li>Fleet dashboards and Slack alerts for down jobs / storage / backup signals.</li>
+<li>Operators can see per-router load and lease churn without WinBox hopping.</li>
+<li>Playbooks are re-runnable; secrets stay in vault, not Git.</li>
+</ul>
+<aside class="soundbites"><h2>Interview soundbites</h2>
+<blockquote>“Identity rename must not invalidate Prometheus history — key on the scrape address.”</blockquote>
+<blockquote>“I don’t trust an alert until I’ve forced it once.”</blockquote>
+</aside>
+  </article>
+  <footer class="site-footer">
+    <div><strong>Groundline</strong> · anonymized on-prem infrastructure work</div>
+    <div>Draft site · review before any public push</div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

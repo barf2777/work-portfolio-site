@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VLAN and Active Directory cutover — Groundline</title>
+  <meta name="description" content="Move identity and file services onto a dedicated VLAN; VPN-only admin." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="../index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#approach">Approach</a></li>
+      <li><a href="../index.html#stack">Stack</a></li>
+    </ul>
+  </nav>
+  <header class="case-hero" id="main">
+    <a class="back" href="../index.html#work">← All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1>VLAN and Active Directory cutover</h1>
+    <div class="case-meta"><span class="tag">Active Directory</span><span class="tag">DNS</span><span class="tag">DFS</span><span class="tag">MikroTik firewall</span><span class="tag">WireGuard</span><span class="tag">phased cutover</span></div>
+    <p class="case-scale"><span>Scale</span> multi-building campus · ~25 routed VLANs · 2 domain controllers · ~30 virtual guests affected</p>
+  </header>
+  <article class="case-body">
+<h2>Situation</h2>
+<p>Brownfield manufacturing campus. Domain controllers, file servers, and mixed workloads shared a legacy server VLAN with cameras and other noise. Remote access still included WAN DST-NAT and port-knock patterns that no longer matched the threat model.</p>
+<h2>Task</h2>
+<p>Move identity and core file services onto a dedicated server VLAN, keep production online, and retire internet-facing RDP/SSH holes in favor of VPN-only admin access.</p>
+<h2>Approach</h2>
+<ol>
+<li><strong>Prep-not-cutover</strong> — document dual addressing, firewall address-lists, VPN peer <code>allowed-address</code> entries, and AD Sites before flipping IPs.</li>
+<li><strong>Cutover in waves</strong> — storage appliances first, then application servers, then the DC pair; refresh DNS forwarders and <code>_msdcs</code> NS records to match reality.</li>
+<li><strong>Expect brownfield landmines</strong> — stale static DNS on file servers breaks domain secure channel and DFS management even when DCs are healthy; vendor apps that hardcode share IPs fail until the vendor updates the path.</li>
+<li><strong>Harden the edge in the same program</strong> — remove WAN DST-NAT for RDP/SSH and narrow noisy UDP input to the VPN interface list after verifying camera/VPN paths.</li>
+<li><strong>Verify interface membership</strong> — a new VLAN that is not on the router’s LAN interface list breaks DC→router DNS resolution in subtle ways (NXDOMAIN for internal names).</li>
+</ol>
+<h2>Result</h2>
+<ul>
+<li>DCs and primary file/app servers live on the dedicated VLAN; DHCP DNS/NTP for campus clients points only at the live DC pair.</li>
+<li>Remote admin path is WireGuard-only; WAN RDP/SSH NAT and port-knock leftovers removed.</li>
+<li>Runbook captures complications (hosts file, hypervisor tag vs IP, DFSR “namespace Offline ≠ stop replication”) so the next cutover is faster.</li>
+</ul>
+<aside class="soundbites"><h2>Interview soundbites</h2>
+<blockquote>“I treat VLAN moves as dependency graphs, not IP renames.”</blockquote>
+<blockquote>“Secure channel and DFS failures after a DC move are usually client DNS, not AD itself.”</blockquote>
+</aside>
+  </article>
+  <footer class="site-footer">
+    <div><strong>Groundline</strong> · anonymized on-prem infrastructure work</div>
+    <div>Draft site · review before any public push</div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

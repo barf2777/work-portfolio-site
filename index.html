@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Groundline — Systems &amp; network engineering</title>
+  <meta name="description" content="Anonymized case studies from on-prem campus infrastructure: Active Directory, MikroTik, Proxmox, observability." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#stack">Stack</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="main">
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#eef2ee" stop-opacity="0.15"/>
+            <stop offset="55%" stop-color="#f3f1eb" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#f3f1eb" stop-opacity="0.95"/>
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="900" fill="transparent"/>
+        <!-- campus topology silhouette -->
+        <g fill="none" stroke="#0f6b5c" stroke-width="1.4" opacity="0.45">
+          <path class="topo-line" d="M120 620 C280 520, 360 480, 520 470 S780 510, 920 420 S1180 280, 1320 260"/>
+          <path class="topo-line" d="M180 720 C340 680, 480 640, 640 610 S960 560, 1100 480 S1280 360, 1380 340"/>
+          <path d="M520 470 L520 280 M920 420 L920 200 M640 610 L640 380" stroke-opacity="0.35"/>
+        </g>
+        <g fill="#0f6b5c">
+          <circle cx="520" cy="470" r="7" opacity="0.7"/>
+          <circle cx="920" cy="420" r="7" opacity="0.7"/>
+          <circle cx="640" cy="610" r="6" opacity="0.55"/>
+          <circle cx="1320" cy="260" r="5" opacity="0.5"/>
+          <circle cx="180" cy="720" r="5" opacity="0.4"/>
+          <rect x="500" y="250" width="40" height="28" rx="3" opacity="0.35"/>
+          <rect x="900" y="172" width="40" height="28" rx="3" opacity="0.35"/>
+          <rect x="620" y="352" width="40" height="28" rx="3" opacity="0.28"/>
+        </g>
+        <text x="508" y="242" font-family="IBM Plex Mono, monospace" font-size="11" fill="#0a4a40" opacity="0.55">CORE</text>
+        <text x="888" y="164" font-family="IBM Plex Mono, monospace" font-size="11" fill="#0a4a40" opacity="0.55">EDGE</text>
+        <text x="612" y="344" font-family="IBM Plex Mono, monospace" font-size="11" fill="#0a4a40" opacity="0.45">DC</text>
+        <rect width="1440" height="900" fill="url(#fade)"/>
+      </svg>
+    </div>
+    <div class="hero-inner">
+      <p class="hero-brand">Ground<em>line</em></p>
+      <h1>Brownfield campuses, made measurable and reversible.</h1>
+      <p class="hero-lead">Systems &amp; network engineering for on-prem manufacturing and campus environments — Active Directory, MikroTik, Proxmox, and observability — without tribal knowledge.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#work">View work</a>
+        <a class="btn" href="#approach">How I work</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section scale-band" aria-label="Environment scale">
+    <dl class="figures reveal">
+      <div><dt>~50</dt><dd>RouterOS devices under Git-tracked config</dd></div>
+      <div><dt>~25</dt><dd>routed VLANs across a multi-building campus</dd></div>
+      <div><dt>4+1</dt><dd>Proxmox nodes in production, plus a lab cluster</dd></div>
+      <div><dt>~30</dt><dd>virtual guests, backed up and restore-tested</dd></div>
+    </dl>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-heading">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2 id="work-heading">Case studies</h2>
+      </div>
+      <p>Rewritten for a hiring audience. No employer names, people, or internal addresses.</p>
+    </div>
+    <ul class="work-list">
+<li class="reveal">
+          <a href="work/vlan-ad-cutover.html">
+            <span class="work-idx">01</span>
+            <div>
+              <div class="work-title">VLAN and Active Directory cutover</div>
+              <p class="work-blurb">Move identity and file services onto a dedicated VLAN; VPN-only admin.</p>
+              <div class="work-tags"><span class="tag">Active Directory</span><span class="tag">DNS</span><span class="tag">DFS</span><span class="tag">MikroTik firewall</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+<li class="reveal">
+          <a href="work/network-as-code.html">
+            <span class="work-idx">02</span>
+            <div>
+              <div class="work-title">Network as code (MikroTik fleet)</div>
+              <p class="work-blurb">Git-tracked RouterOS exports and inventory that matches live DHCP.</p>
+              <div class="work-tags"><span class="tag">RouterOS</span><span class="tag">Git</span><span class="tag">inventory</span><span class="tag">CAPsMAN</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+<li class="reveal">
+          <a href="work/fleet-observability.html">
+            <span class="work-idx">03</span>
+            <div>
+              <div class="work-title">Fleet observability (Prometheus + Grafana)</div>
+              <p class="work-blurb">Prometheus + Grafana for the router fleet; alerts verified end-to-end.</p>
+              <div class="work-tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Alertmanager</span><span class="tag">MikroTik exporters</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+<li class="reveal">
+          <a href="work/proxmox-cluster-lifecycle.html">
+            <span class="work-idx">04</span>
+            <div>
+              <div class="work-title">Proxmox cluster lifecycle</div>
+              <p class="work-blurb">Quorum, PBS restores, and upgrade discipline on bare metal.</p>
+              <div class="work-tags"><span class="tag">Proxmox VE</span><span class="tag">quorum</span><span class="tag">PBS</span><span class="tag">upgrades</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+<li class="reveal">
+          <a href="work/capsman-wifi-fleet.html">
+            <span class="work-idx">05</span>
+            <div>
+              <div class="work-title">Controller-managed Wi‑Fi (CAPsMAN)</div>
+              <p class="work-blurb">Controller-managed SSIDs/VLANs — change once, provision many.</p>
+              <div class="work-tags"><span class="tag">MikroTik</span><span class="tag">CAPsMAN</span><span class="tag">VLAN-aware SSIDs</span><span class="tag">fleet provisioning</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+<li class="reveal">
+          <a href="work/backup-visibility.html">
+            <span class="work-idx">06</span>
+            <div>
+              <div class="work-title">Backup visibility and scrape pitfalls</div>
+              <p class="work-blurb">Make backup health scrapeable; catch firewalld holes.</p>
+              <div class="work-tags"><span class="tag">PBS</span><span class="tag">file backup</span><span class="tag">node_exporter</span><span class="tag">firewalld</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+<li class="reveal">
+          <a href="work/file-services-migration.html">
+            <span class="work-idx">07</span>
+            <div>
+              <div class="work-title">File services &amp; DFS migration</div>
+              <p class="work-blurb">DFS/DFSR foot-guns and pairing shares with the right backup.</p>
+              <div class="work-tags"><span class="tag">DFS</span><span class="tag">DFSR</span><span class="tag">file backup</span><span class="tag">brownfield cutover</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+<li class="reveal">
+          <a href="work/ad-hygiene-laps.html">
+            <span class="work-idx">08</span>
+            <div>
+              <div class="work-title">AD hygiene and LAPS</div>
+              <p class="work-blurb">Stale computers, LAPS, and answerable local-admin paths.</p>
+              <div class="work-tags"><span class="tag">Active Directory</span><span class="tag">LAPS</span><span class="tag">stale computer objects</span><span class="tag">privilege tracing</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+<li class="reveal">
+          <a href="work/wazuh-endpoint-visibility.html">
+            <span class="work-idx">09</span>
+            <div>
+              <div class="work-title">Wazuh for endpoint / DNS visibility</div>
+              <p class="work-blurb">Agents via AD/GPO; DNS debug logs made usable.</p>
+              <div class="work-tags"><span class="tag">Wazuh</span><span class="tag">GPO agent rollout</span><span class="tag">Windows DNS logs</span><span class="tag">AD-aware deploy</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+<li class="reveal">
+          <a href="work/incident-hygiene.html">
+            <span class="work-idx">10</span>
+            <div>
+              <div class="work-title">Incident hygiene (EDR + national CERT)</div>
+              <p class="work-blurb">EDR and CERT intake without mixing unrelated stories.</p>
+              <div class="work-tags"><span class="tag">EDR</span><span class="tag">phishing</span><span class="tag">CERT intake</span><span class="tag">containment notes</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+<li class="reveal">
+          <a href="work/docs-as-ops.html">
+            <span class="work-idx">11</span>
+            <div>
+              <div class="work-title">Documentation as an operations system</div>
+              <p class="work-blurb">Daily log → changelog → reusable troubleshooting patterns.</p>
+              <div class="work-tags"><span class="tag">worklogs</span><span class="tag">runbooks</span><span class="tag">changelog</span><span class="tag">troubleshooting pattern library</span></div>
+            </div>
+            <span class="work-go">Read →</span>
+          </a>
+        </li>
+    </ul>
+  </section>
+
+  <section class="section" id="approach" aria-labelledby="approach-heading">
+    <div class="approach">
+      <div class="approach-copy reveal">
+        <p class="eyebrow">Approach</p>
+        <h2 id="approach-heading">Prep, then cutover.</h2>
+        <p>I inherit messy on-prem environments and leave them with Git history, scrapeable metrics, and runbooks the next person can follow. Change control is explicit: propose the exact command, wait for approval, execute only that.</p>
+        <p>This site is anonymized. Day-to-day ops journals stay private.</p>
+      </div>
+      <ol class="principles reveal">
+        <li>
+          <strong>Blast-radius thinking</strong>
+          <span>Phased moves. Dual addressing. Rollback exports before the flip.</span>
+        </li>
+        <li>
+          <strong>Verify from the collector</strong>
+          <span>Listening on the host is not the same as Prometheus can scrape.</span>
+        </li>
+        <li>
+          <strong>Write it down</strong>
+          <span>Daily outcomes, changelogs, and reusable troubleshooting patterns.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="stack" aria-labelledby="stack-heading">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Stack</p>
+        <h2 id="stack-heading">What I operate</h2>
+      </div>
+    </div>
+    <ul class="stack reveal">
+      <li>MikroTik / RouterOS</li>
+      <li>CAPsMAN Wi‑Fi</li>
+      <li>Active Directory · DNS · GPO</li>
+      <li>WireGuard</li>
+      <li>Proxmox VE · PBS</li>
+      <li>Prometheus · Grafana</li>
+      <li>Ansible · Git</li>
+      <li>Wazuh</li>
+      <li>DFS / file services</li>
+      <li>EDR triage process</li>
+    </ul>
+  </section>
+
+  <footer class="site-footer">
+    <div>
+      <strong>Groundline</strong><br />
+      Anonymous portfolio · EET timezone · remote-ready
+    </div>
+    <div>
+      English C1 (technical)<br />
+      Contact via GitHub when published
+    </div>
+  </footer>
+  <script src="assets/site.js"></script>
+</body>
+</html>

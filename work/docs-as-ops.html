@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Documentation as an operations system — Groundline</title>
+  <meta name="description" content="Daily log → changelog → reusable troubleshooting patterns." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="../index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#approach">Approach</a></li>
+      <li><a href="../index.html#stack">Stack</a></li>
+    </ul>
+  </nav>
+  <header class="case-hero" id="main">
+    <a class="back" href="../index.html#work">← All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1>Documentation as an operations system</h1>
+    <div class="case-meta"><span class="tag">worklogs</span><span class="tag">runbooks</span><span class="tag">changelog</span><span class="tag">troubleshooting pattern library</span><span class="tag">agent-assisted discipline</span></div>
+    <p class="case-scale"><span>Scale</span> ~120 markdown documents · 18 operator runbooks · daily worklogs with weekly rollups · reusable troubleshooting notes kept separate from the timeline</p>
+  </header>
+  <article class="case-body">
+<h2>Situation</h2>
+<p>Single-operator / small-team IT on a complex brownfield campus. Knowledge lived in chat, WinBox, and memory. Handoffs and resume-after-interrupt were expensive.</p>
+<h2>Task</h2>
+<p>Build a documentation system that (1) captures <em>what I did today</em>, (2) records <em>what changed in infra</em>, and (3) extracts <em>reusable fixes</em> — without turning every day into a novel.</p>
+<h2>Approach</h2>
+<ol>
+<li><strong>Three layers</strong> — daily worklog (granular timeline), changelog (infra state), runbooks/architecture (how to operate).</li>
+<li><strong>Weekly rollups</strong> — theme bullets with time ranges; highlights/risks for Monday review.</li>
+<li><strong>Close-thread outcomes</strong> — when something finishes, one past-tense bullet with blast radius / done vs deferred.</li>
+<li><strong>Troubleshooting notes</strong> — symptom → cause → fix → prevent, newest first; only when the symptom was misleading and the fix is repeatable.</li>
+<li><strong>Agent rules</strong> — logging during live troubleshooting is mandatory; live mutations still need per-change human approval.</li>
+<li><strong>Portfolio mining</strong> — weekly “portfolio candidates” (internal) → separate sanitized public rewrite (this repo). Never auto-copy.</li>
+</ol>
+<h2>Result</h2>
+<ul>
+<li>Resume a multi-week thread from the log instead of from memory.</li>
+<li>Hiring-facing case studies exist because the private archive is dense enough to rewrite.</li>
+<li>New operators (or future you) get jump-table runbooks and a controlled vocabulary instead of synonym soup.</li>
+</ul>
+<aside class="soundbites"><h2>Interview soundbites</h2>
+<blockquote>“My worklog is evidence; my portfolio is the sanitized narrative.”</blockquote>
+<blockquote>“If I fixed it twice, it belongs in troubleshooting notes, not only in chat.”</blockquote>
+</aside>
+  </article>
+  <footer class="site-footer">
+    <div><strong>Groundline</strong> · anonymized on-prem infrastructure work</div>
+    <div>Draft site · review before any public push</div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

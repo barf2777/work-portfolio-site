@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Controller-managed Wi‑Fi (CAPsMAN) — Groundline</title>
+  <meta name="description" content="Controller-managed SSIDs/VLANs — change once, provision many." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="../index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#approach">Approach</a></li>
+      <li><a href="../index.html#stack">Stack</a></li>
+    </ul>
+  </nav>
+  <header class="case-hero" id="main">
+    <a class="back" href="../index.html#work">← All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1>Controller-managed Wi‑Fi (CAPsMAN)</h1>
+    <div class="case-meta"><span class="tag">MikroTik</span><span class="tag">CAPsMAN</span><span class="tag">VLAN-aware SSIDs</span><span class="tag">fleet provisioning</span></div>
+    <p class="case-scale"><span>Scale</span> two controller stacks in parallel (legacy 802.11n/ac + newer ax) · dozens of managed APs · corporate, guest-isolated, and segregated SSIDs on separate VLANs</p>
+  </header>
+  <article class="case-body">
+<h2>Situation</h2>
+<p>Manufacturing campus Wi‑Fi mixed new ax access points with legacy gear. One-off AP configs did not scale and made “what changed?” unanswerable.</p>
+<h2>Task</h2>
+<p>Move toward controller-driven provisioning so new APs join with the right SSIDs/VLANs and ops reviews happen on the manager, not every edge.</p>
+<h2>Approach</h2>
+<ol>
+<li>Treat CAPsMAN (or wifi wave2 controller stack) as the source of truth for managed WLANs.</li>
+<li>Validate VLAN tagging end-to-end (SSID → VLAN → DHCP → firewall).</li>
+<li>When many CAP exports change after a controller edit, classify them as sync echo unless local bridge/ether config moved.</li>
+<li>Document join/re-provision steps for the next AP drop-in.</li>
+</ol>
+<h2>Result</h2>
+<ul>
+<li>Repeatable AP onboarding; Wi‑Fi changes reviewable at the controller.</li>
+<li>Clear ops rule: don’t invent fifteen “AP tickets” for one controller commit.</li>
+</ul>
+<aside class="soundbites"><h2>Interview soundbites</h2>
+<blockquote>“If the controller didn’t change, the CAP file churn is usually echo.”</blockquote>
+<blockquote>“SSID problems are often VLAN/DHCP problems wearing a Wi‑Fi hat.”</blockquote>
+</aside>
+  </article>
+  <footer class="site-footer">
+    <div><strong>Groundline</strong> · anonymized on-prem infrastructure work</div>
+    <div>Draft site · review before any public push</div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

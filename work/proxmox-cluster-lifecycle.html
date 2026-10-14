@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proxmox cluster lifecycle — Groundline</title>
+  <meta name="description" content="Quorum, PBS restores, and upgrade discipline on bare metal." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="../index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#approach">Approach</a></li>
+      <li><a href="../index.html#stack">Stack</a></li>
+    </ul>
+  </nav>
+  <header class="case-hero" id="main">
+    <a class="back" href="../index.html#work">← All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1>Proxmox cluster lifecycle</h1>
+    <div class="case-meta"><span class="tag">Proxmox VE</span><span class="tag">quorum</span><span class="tag">PBS</span><span class="tag">upgrades</span><span class="tag">restore drills</span></div>
+    <p class="case-scale"><span>Scale</span> 4-node production cluster (~700 GB RAM, ~15 TB ZFS) plus a separate lab cluster · ~30 VMs and containers · Backup Server with scheduled datacenter jobs</p>
+  </header>
+  <article class="case-body">
+<h2>Situation</h2>
+<p>On-prem workloads needed a real cluster (not a single tower), backups that could restore, and a path to major VE upgrades.</p>
+<h2>Task</h2>
+<p>Build and operate a multi-node Proxmox environment: quorum, backup to PBS, guest storage pitfalls, upgrade prep.</p>
+<h2>Approach</h2>
+<ol>
+<li>Add nodes carefully; use QDevice when even counts threaten quorum.</li>
+<li>Separate hypervisor backup (PBS) from file-level backup products.</li>
+<li>Practice restore — prune policy means nothing without a restore drill.</li>
+<li>Diagnose Windows-on-ZFS latency as storage+guest, not “Proxmox is slow.”</li>
+<li>Prep VE 9 upgrades with a checklist, not Friday-night hope.</li>
+</ol>
+<h2>Result</h2>
+<ul>
+<li>Cluster capable of hosting identity/file/monitoring guests.</li>
+<li>Operator habit: backup green ≠ restore proven.</li>
+</ul>
+<aside class="soundbites"><h2>Interview soundbites</h2>
+<blockquote>“Quorum is a first-class design input, not an afterthought.”</blockquote>
+<blockquote>“I don’t trust a backup until I’ve restored something that mattered.”</blockquote>
+</aside>
+  </article>
+  <footer class="site-footer">
+    <div><strong>Groundline</strong> · anonymized on-prem infrastructure work</div>
+    <div>Draft site · review before any public push</div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

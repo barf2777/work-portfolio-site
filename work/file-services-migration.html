@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>File services &amp; DFS migration — Groundline</title>
+  <meta name="description" content="DFS/DFSR foot-guns and pairing shares with the right backup." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="mark" href="../index.html">Ground<span>line</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#approach">Approach</a></li>
+      <li><a href="../index.html#stack">Stack</a></li>
+    </ul>
+  </nav>
+  <header class="case-hero" id="main">
+    <a class="back" href="../index.html#work">← All work</a>
+    <p class="eyebrow">Case study</p>
+    <h1>File services &amp; DFS migration</h1>
+    <div class="case-meta"><span class="tag">DFS</span><span class="tag">DFSR</span><span class="tag">file backup</span><span class="tag">brownfield cutover</span></div>
+    <p class="case-scale"><span>Scale</span> shared namespaces serving mapped drives across departments · multi-terabyte share data · migration run without a maintenance window users would notice</p>
+  </header>
+  <article class="case-body">
+<h2>Situation</h2>
+<p>Aging file servers and DFS namespaces needed migration while users kept working from mapped drives.</p>
+<h2>Task</h2>
+<p>Plan DFS/file moves, understand DFSR foot-guns, and pair file data with the right backup product.</p>
+<h2>Approach</h2>
+<ol>
+<li>Separate namespace Offline from “replication stopped.”</li>
+<li>Inventory share consumers — apps hardcoding UNC/IP break silently.</li>
+<li>Choose file-level backup for share data; don’t pretend PBS covers Excel locks.</li>
+<li>Validate access after DNS/IP moves (secure channel + share ACL symptoms look alike).</li>
+</ol>
+<h2>Result</h2>
+<ul>
+<li>Migration playbook aware of DFSR semantics and vendor UNC hardcodes.</li>
+<li>Clear backup role split for share data vs VMs.</li>
+</ul>
+<aside class="soundbites"><h2>Interview soundbites</h2>
+<blockquote>“DFS Offline is not a red stop light for DFSR.”</blockquote>
+<blockquote>“File migrate tickets fail on the consumers you forgot, not the copy job.”</blockquote>
+</aside>
+  </article>
+  <footer class="site-footer">
+    <div><strong>Groundline</strong> · anonymized on-prem infrastructure work</div>
+    <div>Draft site · review before any public push</div>
+  </footer>
+  <script src="../assets/site.js"></script>
+</body>
+</html>
