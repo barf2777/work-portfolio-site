@@ -1,10 +1,12 @@
-/* Plain engineer portfolio */
+/* Plain engineer portfolio — dark */
 :root {
-  --ink: #1a1a1a;
-  --muted: #555;
-  --line: #ddd;
-  --bg: #fafafa;
-  --link: #0b57d0;
+  --ink: #e8eaed;
+  --muted: #9aa0a6;
+  --line: #3c4043;
+  --bg: #121417;
+  --surface: #1a1d21;
+  --link: #8ab4f8;
+  --code-bg: #2d3136;
   --max: 42rem;
   --font: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
@@ -18,6 +20,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
@@ -42,7 +45,7 @@ a:hover {
   left: -999px;
   top: 0;
   background: var(--ink);
-  color: #fff;
+  color: var(--bg);
   padding: 0.5rem 1rem;
   z-index: 100;
 }
@@ -60,7 +63,7 @@ a:hover {
   justify-content: space-between;
   padding: 1rem clamp(1rem, 3vw, 1.5rem);
   border-bottom: 1px solid var(--line);
-  background: #fff;
+  background: var(--surface);
 }
 
 .nav-links {
@@ -98,7 +101,7 @@ a:hover {
 .page-header p {
   margin: 0 0 1.25rem;
   color: var(--muted);
-  max-width: 40ch;
+  max-width: 42ch;
 }
 
 .meta-line {
@@ -193,7 +196,7 @@ a:hover {
   color: var(--muted);
   border: 1px solid var(--line);
   padding: 0.1rem 0.35rem;
-  background: #fff;
+  background: var(--surface);
 }
 
 .principles {
@@ -224,7 +227,7 @@ a:hover {
   font-size: 0.78rem;
   padding: 0.3rem 0.5rem;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--surface);
   color: var(--muted);
 }
 
@@ -238,7 +241,7 @@ a:hover {
   justify-content: space-between;
   color: var(--muted);
   font-size: 0.9rem;
-  background: #fff;
+  background: var(--surface);
 }
 
 .site-footer strong {
@@ -300,6 +303,7 @@ a:hover {
   font-size: 1.05rem;
   font-weight: 600;
   margin: 1.75rem 0 0.5rem;
+  color: var(--ink);
 }
 
 .case-body p,
@@ -319,11 +323,11 @@ a:hover {
 .case-body code {
   font-family: var(--mono);
   font-size: 0.88em;
-  background: #eee;
+  background: var(--code-bg);
+  color: var(--ink);
   padding: 0.05rem 0.25rem;
 }
 
-/* no scroll theater */
 .reveal {
   opacity: 1;
   transform: none;
