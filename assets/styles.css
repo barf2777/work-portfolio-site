@@ -199,20 +199,6 @@ a:hover {
   background: var(--surface);
 }
 
-.principles {
-  margin: 0;
-  padding-left: 1.2rem;
-  color: var(--muted);
-}
-
-.principles li {
-  margin: 0.4rem 0;
-}
-
-.principles strong {
-  color: var(--ink);
-}
-
 .stack {
   display: flex;
   flex-wrap: wrap;
